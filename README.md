@@ -10,15 +10,14 @@ There are two ways to interact with this application once you have completed ins
 
 Install 
 
-npm install & bower install
-
+`npm install & bower install`
 
 Running Reviews Management Application
 
-gulp serve
+`gulp serve`
 
 
 Running Karma Tests
 
-npm test
+`npm test`
 
