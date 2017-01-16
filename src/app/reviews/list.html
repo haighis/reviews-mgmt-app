@@ -1,0 +1,95 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+  <main class="mdl-layout__content">
+    <div class="page-content">
+
+    <div class="acme-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">Add  Review</h2>
+        </div>
+      </div>  
+        
+
+      
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" ng-model="vm.review.title" type="text" id="title">
+          <label class="mdl-textfield__label" for="title">Title</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" ng-model="vm.review.desc" type="text" id="desc">
+          <label class="mdl-textfield__label" for="desc">Description</label>
+        </div>
+
+
+        <div class="mdl-card__actions">
+          <button ng-click="vm.save()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-upgraded=",MaterialButton">
+                Save
+          </button>    
+        </div>        
+
+
+        <div class="mdl-card__actions">Reviews
+        </div>        
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp fullwidth">
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">
+                  <a ng-click="sortColumn = 'title'; sortOrder = !sortOrder">
+                    Name
+                    <span ng-show="sortColumn == 'title' && !sortOrder" class="fa fa-caret-down"></span>
+                    <span ng-show="sortColumn == 'title' && sortOrder" class="fa fa-caret-up"></span>
+                  </a>
+                </th>
+                <th>
+                  <a ng-click="sortColumn = 'desc'; sortOrder = !sortOrder">
+                  Description
+                    <span ng-show="sortColumn == 'title' && !sortOrder" class="fa fa-caret-down"></span>
+                    <span ng-show="sortColumn == 'title' && sortOrder" class="fa fa-caret-up"></span>
+                  </a>
+                </th>
+               
+              </tr>
+            </thead>
+            
+            <tbody>
+              <tr ng-repeat="item in vm.collection | orderBy:sortColumn:sortOrder | pagination: vm.curPage * vm.pageSize | limitTo: vm.pageSize">
+                <td>{{ item.title }}</td>
+                <td>{{ item.desc }}</td>
+              </tr>
+            </tbody>
+             <tfoot>
+              <tr>
+                <td colspan="3">
+                  <div ng-show="vm.collection.length">
+                    
+              <button ng-disabled="vm.curPage == 0"
+                     ng-click="vm.curPage=vm.curPage-1" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">arrow_back</i>
+      <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+                     <span>Page {{vm.curPage + 1}} of {{ vm.numberOfPages() }}</span>
+                     
+                    <button ng-disabled="vm.curPage >= vm.collection.length/vm.pageSize - 1"
+                     ng-click="vm.curPage = vm.curPage+1" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">arrow_forward</i>
+      <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+
+          
+      </div>    
+    </div>
+  </main>
+
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__right-section">
+      <div class="mdl-logo">
+        Footer
+      </div>
+    </div>
+  </footer>
+
+</div>
